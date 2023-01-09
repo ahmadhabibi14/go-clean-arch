@@ -37,6 +37,8 @@ func GetAllMahasiswa(w http.ResponseWriter, r *http.Request) {
 		allMahasiswa = append(allMahasiswa, each)
 	}
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
 	w.WriteHeader(http.StatusOK)
 	// Ini untuk mengonversi object struct ke json
 	json.NewEncoder(w).Encode(allMahasiswa)
@@ -45,6 +47,8 @@ func GetAllMahasiswa(w http.ResponseWriter, r *http.Request) {
 // Tambah Mahasiswa
 func AddMahasiswa(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 	w.WriteHeader(http.StatusOK)
 	addMahasiswa := models.AddMahasiswa{}
 	// Ini untuk mengonversi data json ke bentuk object struct
@@ -63,10 +67,7 @@ func AddMahasiswa(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err.Error())
 	} else {
-		log.Printf(
-			"Berhasil menambahkan %s sebagai Mahasiswa",
-			addMahasiswa.Nama,
-		)
+		log.Printf("Berhasil menambahkan %s sebagai Mahasiswa", addMahasiswa.Nama)
 	}
 	defer db.Close()
 }
@@ -74,6 +75,8 @@ func AddMahasiswa(w http.ResponseWriter, r *http.Request) {
 // Hapus Mahasiswa
 func DeleteMahasiswa(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE, OPTIONS")
 	w.WriteHeader(http.StatusOK)
 	deleteMahasiswa := models.Mahasiswa{}
 	// Ini untuk mengonversi data json ke bentuk object struct
@@ -102,6 +105,8 @@ func DeleteMahasiswa(w http.ResponseWriter, r *http.Request) {
 // Update Mahasiswa
 func UpdateMahasiswa(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "PUT, OPTIONS")
 	w.WriteHeader(http.StatusOK)
 	updateMahasiswa := models.Mahasiswa{}
 	// Ini untuk mengonversi data json ke bentuk object struct
