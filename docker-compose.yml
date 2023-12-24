@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  postgres_gcla:
+    container_name: postgres_gcla
+    image: postgres
+    ports:
+      - 127.0.0.1:5432:5432
+    volumes:
+      - ./_tmpdb/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=habi123
+      - POSTGRES_USER=habi
+      - POSTGRES_DB=rest
